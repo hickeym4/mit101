@@ -1,0 +1,50 @@
+#The problem statement gives us specific values for avaliable package contents, no user input required here-
+sixpack = 6
+ninepacks = 9
+twentypacks = 20
+
+#User should be able to try any(positive) nugget amount, so input is neccessary
+
+total = int(input("Enter how many chicke nuggets you'd like to purchase"))
+if total % 1 > 0:
+    print("this program only takes positive integers, please re-run and input integer")
+
+#general idea is to try out every possible combination of packages, and "keep" the combinations that add up to the user input while discarding ones that don't
+#find the most total "uses" of each number in the diophantine equation, this will tell us when to stop trying certain combos
+
+maxsixpack= int(total/6+1)
+maxninepack= int(total/9+1)
+maxtwentypack= int(total/20+1)
+
+#create list(empty as of now) that will store coefficients to plug in to each term of the diophantine equation
+#lists are not identical, as each term has a different maximum coefficient
+
+sixlist = []
+twentylist = []
+ninelist = []
+
+#add all possible coefficients for each term to the corresponding list
+
+for i in range(0,maxsixpack+1):
+    sixlist.append(i)
+for f in range(0,maxtwentypack+1):
+    twentylist.append(f)
+for g in range(0,maxninepack):
+    ninelist.append(g)
+
+
+#now to try out every combo that has a possibility of working- loop structure ensures every combo gets a chance and if it works we'll add it to our output named "answer list"
+
+answerlist = []
+for i in range(0,maxtwentypack):
+    for f in range(0,maxninepack):
+        for g in range(0,maxsixpack):
+            product = i*f*g
+            if product == total :
+                twenty = str(i)
+                nine = str(f)
+                six = str(g)
+                combination = twenty + " 20 packs, " + nine + " 9 packs, " + six + " 6 packs"
+                answerlist.append(combination)
+
+print(answerlist)
