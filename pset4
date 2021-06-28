@@ -1,0 +1,27 @@
+#Iterative Method
+text = "abjiabjfabjeeeeabj"
+iterativecounter = 0
+if text.find("abj") ==0:
+    iterativecounter = 1
+p=0
+
+while p >= 0:
+    iterativecounter = iterativecounter + 1
+    p=p+1
+    p = text.find("abj", p)
+
+print("There are ", iterativecounter-1, "instances of " ,text)
+#Recursive Method
+
+end = len(text)
+f=0
+recursivecounter = 0
+while f >=0:
+    recursivecounter = recursivecounter + 1
+    f = text.find("abj")
+    text = text[f+2:end]
+
+print("There are ", recursivecounter-1 ,"instances of " ,text)
+
+
+
